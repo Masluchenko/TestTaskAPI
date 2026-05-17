@@ -18,7 +18,7 @@ type Database struct {
 	GORM *gorm.DB
 }
 
-func NewDatabase() *Database {
+func NewDatabase(conf *configs.Config) *Database {
 	err := godotenv.Load()
 	if err != nil {
 		log.Println(".env not found")
