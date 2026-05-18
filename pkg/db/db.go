@@ -10,12 +10,12 @@ import (
 	"gorm.io/gorm"
 )
 
-type Database struct {
+type Db struct {
 	SQL  *sql.DB
 	GORM *gorm.DB
 }
 
-func NewDb(conf *configs.Config) *Database {
+func NewDb(conf *configs.Config) *Db {
 	db, err := gorm.Open(postgres.Open(conf.Db.Dsn), &gorm.Config{})
 	if err != nil {
 		panic(err)
@@ -31,7 +31,7 @@ func NewDb(conf *configs.Config) *Database {
 		panic(err)
 	}
 
-	return &Database{
+	return &Db{
 		SQL:  sqlDB,
 		GORM: db,
 	}
