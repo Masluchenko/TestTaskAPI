@@ -35,7 +35,16 @@ func (handler *DepartHandler) CreateDepart() http.HandlerFunc {
 	}
 }
 
-func (handler *DepartHandler) CreateEmployees() http.HandlerFunc {}
+func (handler *DepartHandler) CreateEmployees() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		createdDepart, err := handler.EmployeeRequest.Create()
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+		res.Jsons(w, createdDepart, 201)
+	}
+}
 
 func (handler *DepartHandler) Update() http.HandlerFunc {}
 

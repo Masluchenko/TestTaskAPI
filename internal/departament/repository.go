@@ -12,15 +12,15 @@ func NewDepartRepository(database *db.Db) *DepartRepository {
 	}
 }
 
-type DepatType interface {
-	*DepartmentRequest
-	*EmployeeRequest
-}
+// type DepatType interface {
+// 	*DepartmentRequest
+// 	*EmployeeRequest
+// }
 
-func (repo *DepartRepository) Create[T DepatType](table *T) (*T, error) {
-	result := repo.Database.DB.Create(table)
-	if result.Error != nil {
-		return nil, result.Error
-	}
-	return table, nil
-}
+// func (repo *DepartRepository) Create[T DepatType](table *T) (*T, error) {
+// 	result := repo.Database.DB.Create(table)
+// 	if result.Error != nil {
+// 		return nil, result.Error
+// 	}
+// 	return table, nil
+// }

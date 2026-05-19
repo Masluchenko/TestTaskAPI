@@ -3,6 +3,7 @@ package main
 import (
 	"TestTaskAPI/configs"
 	"TestTaskAPI/db"
+	"TestTaskAPI/internal/departament"
 	_ "TestTaskAPI/migrations"
 	"fmt"
 	"net/http"
@@ -11,8 +12,14 @@ import (
 func main() {
 
 	conf := configs.LoadConfig()
-	db := db.NewDatabase(conf)
+	db := db.NewDb(conf)
 	router := http.NewServeMux()
+
+	DepartRepository := departament.NewDepartRepository(db)
+
+	departament.NewDepartHandler(router, departament.DepartHandlerDeps{
+		DepartRepository: DepartRepository,
+	})
 
 	server := http.Server{
 		Addr:    ":8081",
