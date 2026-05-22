@@ -11,14 +11,14 @@ func init() {
 }
 
 func upEmployee(tx *sql.Tx) error {
-	query := `CREATE TABLE Employee (
+	query := `CREATE TABLE IF NOT EXISTS employee (
 				id SERIAL PRIMARY KEY,
 				department_id INT NOT NULL,
 				full_name VARCHAR(255) NOT NULL,
 				position VARCHAR(255) NOT NULL,
 				hired_at DATE NULL,
 				created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-				CONSTRAINT fk_employee_department FOREIGN KEY (department_id) REFERENCES Department(id) ON DELETE CASCADE
+				CONSTRAINT fk_employee_department FOREIGN KEY (department_id) REFERENCES department(id) ON DELETE CASCADE
 			);`
 	_, err := tx.Exec(query)
 	if err != nil {

@@ -2,9 +2,9 @@ package main
 
 import (
 	"TestTaskAPI/configs"
-	"TestTaskAPI/db"
 	"TestTaskAPI/internal/departament"
 	_ "TestTaskAPI/migrations"
+	"TestTaskAPI/pkg/db"
 	"fmt"
 	"net/http"
 )

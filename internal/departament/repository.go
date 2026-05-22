@@ -1,6 +1,6 @@
 package departament
 
-import "TestTaskAPI/db"
+import "TestTaskAPI/pkg/db"
 
 type DepartRepository struct {
 	Database *db.Db
