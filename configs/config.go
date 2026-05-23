@@ -8,7 +8,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-type Config struct {
+type ConfigData struct {
 	DBHost     string
 	DBPort     string
 	DBUser     string
@@ -18,13 +18,21 @@ type Config struct {
 	ServerPort string
 }
 
-func LoadConfig() *Config {
+type Config struct {
+	Db DbConfig
+}
+
+type DbConfig struct {
+	Dsn string
+}
+
+func LoadConfig() *ConfigData {
 	err := godotenv.Load()
 	if err != nil {
 		log.Println("No .env file found, using environment variables")
 	}
 
-	return &Config{
+	return &ConfigData{
 		DBHost:     os.Getenv("HOST"),
 		DBPort:     os.Getenv("PORT"),
 		DBUser:     os.Getenv("USER"),
@@ -34,41 +42,12 @@ func LoadConfig() *Config {
 	}
 }
 
-func (c *Config) GetDSN() string {
-	return fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=%s",
+func (c *ConfigData) GetDSN() *Config {
+	transformDsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=%s",
 		c.DBHost, c.DBPort, c.DBUser, c.DBPassword, c.DBName, c.DBSSLMode)
+	return &Config{
+		Db: DbConfig{
+			Dsn: transformDsn,
+		},
+	}
 }
-
-// func getEnv(key, defaultValue string) string {
-//     if value := os.Getenv(key); value != "" {
-//         return value
-//     }
-//     return defaultValue
-// }
-
-// import (
-// 	"log"
-// 	"os"
-
-// 	"github.com/joho/godotenv"
-// )
-
-// type Config struct {
-// 	Db DbConfig
-// }
-
-// type DbConfig struct {
-// 	Dsn string
-// }
-
-// func LoadConfig() *Config {
-// 	err := godotenv.Load()
-// 	if err != nil {
-// 		log.Println("Error loading .env file, using default config")
-// 	}
-// 	return &Config{
-// 		Db: DbConfig{
-// 			Dsn: os.Getenv("DSN"),
-// 		},
-// 	}
-// }

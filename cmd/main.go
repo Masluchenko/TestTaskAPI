@@ -11,7 +11,7 @@ import (
 
 func main() {
 
-	conf := configs.LoadConfig()
+	conf := configs.LoadConfig().GetDSN()
 	db := db.NewDb(conf)
 	router := http.NewServeMux()
 

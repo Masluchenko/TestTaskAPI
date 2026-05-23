@@ -1,7 +1,7 @@
 package db
 
 import (
-	"demo/api/configs"
+	"TestTaskAPI/configs"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"

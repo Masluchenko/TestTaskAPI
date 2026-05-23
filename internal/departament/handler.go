@@ -46,8 +46,14 @@ func (handler *DepartHandler) CreateEmployees() http.HandlerFunc {
 	}
 }
 
-func (handler *DepartHandler) Update() http.HandlerFunc {}
+// func (handler *DepartHandler) Update() http.HandlerFunc {
 
-func (handler *DepartHandler) Delete() http.HandlerFunc {}
+// }
 
-func (handler *DepartHandler) GoTo() http.HandlerFunc {}
+// func (handler *DepartHandler) Delete() http.HandlerFunc {
+
+// }
+
+// func (handler *DepartHandler) GoTo() http.HandlerFunc {
+
+// }
