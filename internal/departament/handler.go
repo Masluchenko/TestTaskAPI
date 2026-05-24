@@ -9,13 +9,13 @@ type DepartHandlerDeps struct {
 	DepartRepository *DepartRepository
 }
 
-type Departandler struct {
+type DepartHandler struct {
 	DepartRepository *DepartRepository
 }
 
 func NewDepartHandler(router *http.ServeMux, deps DepartHandlerDeps) {
-	handler := &DepartkHandler{
-		LinkRepository: deps.DepartRepository,
+	handler := &DepartHandler{
+		DepartRepository: deps.DepartRepository,
 	}
 	router.HandleFunc("POST /departments", handler.CreateDepart())
 	router.HandleFunc("POST /departments/{id}/employees/", handler.CreateEmployees())
@@ -46,14 +46,14 @@ func (handler *DepartHandler) CreateEmployees() http.HandlerFunc {
 	}
 }
 
-// func (handler *DepartHandler) Update() http.HandlerFunc {
+func (handler *DepartHandler) Update() http.HandlerFunc {
 
-// }
+}
 
-// func (handler *DepartHandler) Delete() http.HandlerFunc {
+func (handler *DepartHandler) Delete() http.HandlerFunc {
 
-// }
+}
 
-// func (handler *DepartHandler) GoTo() http.HandlerFunc {
+func (handler *DepartHandler) GoTo() http.HandlerFunc {
 
-// }
+}

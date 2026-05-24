@@ -3,7 +3,8 @@ package main
 import (
 	"TestTaskAPI/configs"
 	"TestTaskAPI/internal/departament"
-	_ "TestTaskAPI/migrations"
+	_ "TestTaskAPI/migrations/departament"
+	_ "TestTaskAPI/migrations/employee"
 	"TestTaskAPI/pkg/db"
 	"fmt"
 	"net/http"
