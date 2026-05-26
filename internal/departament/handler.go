@@ -1,6 +1,7 @@
 package departament
 
 import (
+	"TestTaskAPI/pkg/req"
 	"TestTaskAPI/pkg/res"
 	"net/http"
 )
@@ -26,23 +27,31 @@ func NewDepartHandler(router *http.ServeMux, deps DepartHandlerDeps) {
 
 func (handler *DepartHandler) CreateDepart() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		createdDepart, err := handler.DepartRepository.Create()
+		body, err := req.HandleBody[DepartmentRequest](&w, r)
+		if err != nil {
+			return
+		}
+		CreateDep, err := handler.DepartRepository.Create(body)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
 		}
-		res.Jsons(w, createdDepart, 201)
+		res.Jsons(w, CreateDep, 201)
 	}
 }
 
 func (handler *DepartHandler) CreateEmployees() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		createdDepart, err := handler.EmployeeRequest.Create()
+		body, err := req.HandleBody[EmployeeRequest](&w, r)
+		if err != nil {
+			return
+		}
+		CreateEmp, err := handler.DepartRepository.CreateT(body)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
 		}
-		res.Jsons(w, createdDepart, 201)
+		res.Jsons(w, CreateEmp, 201)
 	}
 }
 
