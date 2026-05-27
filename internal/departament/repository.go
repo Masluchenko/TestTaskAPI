@@ -12,11 +12,7 @@ type DepartRepository struct {
 	Database *db.Db
 }
 
-type DepartOrEmpl interface {
-	*DepartmentRequest | *EmployeeRequest
-}
-
-func (repo *DepartRepository) Create(dep *DepartmentRequest) (*DepartmentRequest, error) {
+func (repo *DepartRepository) CreateDepart(dep *DepartmentRequest) (*DepartmentRequest, error) {
 	result := repo.Database.DB.Create(dep)
 	if result.Error != nil {
 		return nil, result.Error
@@ -24,15 +20,7 @@ func (repo *DepartRepository) Create(dep *DepartmentRequest) (*DepartmentRequest
 	return dep, nil
 }
 
-func (repo *DepartRepository) CreateE(dep *DepartmentRequest) (*DepartmentRequest, error) {
-	result := repo.Database.DB.Create(dep)
-	if result.Error != nil {
-		return nil, result.Error
-	}
-	return dep, nil
-}
-
-func CreateT[T DepartOrEmpl](repo *DepartRepository, dep T) (T, error) {
+func (repo *DepartRepository) CreateEmpl(dep *EmployeeRequest) (*EmployeeRequest, error) {
 	result := repo.Database.DB.Create(dep)
 	if result.Error != nil {
 		return nil, result.Error

@@ -31,7 +31,7 @@ func (handler *DepartHandler) CreateDepart() http.HandlerFunc {
 		if err != nil {
 			return
 		}
-		CreateDep, err := handler.DepartRepository.Create(body)
+		CreateDep, err := handler.DepartRepository.CreateDepart(body)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
@@ -46,7 +46,7 @@ func (handler *DepartHandler) CreateEmployees() http.HandlerFunc {
 		if err != nil {
 			return
 		}
-		CreateEmp, err := handler.DepartRepository.CreateT(body)
+		CreateEmp, err := handler.DepartRepository.CreateEmpl(body)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
