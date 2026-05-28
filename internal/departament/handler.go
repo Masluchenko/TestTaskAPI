@@ -20,9 +20,9 @@ func NewDepartHandler(router *http.ServeMux, deps DepartHandlerDeps) {
 	}
 	router.HandleFunc("POST /departments", handler.CreateDepart())
 	router.HandleFunc("POST /departments/{id}/employees/", handler.CreateEmployees())
-	router.HandleFunc("PATCH /departments/{id}", handler.Update())
-	router.HandleFunc("DELETE /departments/{id}", handler.Delete())
-	router.HandleFunc("GET /departments/{id}", handler.GoTo())
+	router.HandleFunc("PATCH /departments/{id}", handler.UpdateDepart())
+	router.HandleFunc("DELETE /departments/{id}", handler.DeleteDepart())
+	router.HandleFunc("GET /departments/{id}", handler.GetDepart())
 }
 
 func (handler *DepartHandler) CreateDepart() http.HandlerFunc {
@@ -55,14 +55,14 @@ func (handler *DepartHandler) CreateEmployees() http.HandlerFunc {
 	}
 }
 
-func (handler *DepartHandler) Update() http.HandlerFunc {
+func (handler *DepartHandler) UpdateDepart() http.HandlerFunc {
 
 }
 
-func (handler *DepartHandler) Delete() http.HandlerFunc {
+func (handler *DepartHandler) DeleteDepart() http.HandlerFunc {
 
 }
 
-func (handler *DepartHandler) GoTo() http.HandlerFunc {
+func (handler *DepartHandler) GetDepart() http.HandlerFunc {
 
 }
